@@ -71,37 +71,43 @@ const App = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black">
-      <NavigationBar
-        currentView={currentView}
-        setCurrentView={setCurrentView}
-        player={player}
-        party={party}
-      />
-
-      {currentView === "home" && (
-        <HomeView
-          player={player}
-          party={party}
+    <div className="h-full w-full bg-gradient-to-b from-gray-900 to-black text-white">
+      <div className="flex flex-col h-full">
+        <NavigationBar
+          currentView={currentView}
           setCurrentView={setCurrentView}
-          setPlayer={setPlayer}
-        />
-      )}
-      {currentView === "map" && (
-        <MapView
-          selectedLocation={selectedLocation}
-          setSelectedLocation={setSelectedLocation}
-          startCombat={startCombat}
-        />
-      )}
-      {currentView === "inventory" && <InventoryView inventory={inventory} />}
-      {currentView === "party" && (
-        <PartyView
-          party={party}
           player={player}
-          recruitCharacter={recruitCharacter}
+          party={party}
         />
-      )}
+
+        <main className="flex-1 w-full max-w-[2000px] mx-auto px-4 py-6 overflow-auto">
+          {currentView === "home" && (
+            <HomeView
+              player={player}
+              party={party}
+              setCurrentView={setCurrentView}
+              setPlayer={setPlayer}
+            />
+          )}
+          {currentView === "map" && (
+            <MapView
+              selectedLocation={selectedLocation}
+              setSelectedLocation={setSelectedLocation}
+              startCombat={startCombat}
+            />
+          )}
+          {currentView === "inventory" && (
+            <InventoryView inventory={inventory} />
+          )}
+          {currentView === "party" && (
+            <PartyView
+              party={party}
+              player={player}
+              recruitCharacter={recruitCharacter}
+            />
+          )}
+        </main>
+      </div>
     </div>
   );
 };
